@@ -1,0 +1,83 @@
+---
+title: 'Speech Technologies: Evaluation of SRILM (Graphics with R)'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Initialisation
+
+This file was generated using R Studio. In this document I explain in detail the steps done to obtain the plots shown in the Exercise document (paper format).
+
+The first step, is to load the excel file and store it in dataframe format. Since we have two sheets, one for the training corpus descriptions and another with the test corpus results we will use two objects
+
+``` {r echo=FALSE}
+pathToFile = "/Volumes/LUC/Universitat/5B/ST/Exercise_2/results2.xlsx"
+```
+
+``` {r load data, message = FALSE}
+library(gdata)
+trainResults = read.xls(pathToFile, sheet=2)
+summary(trainResults)
+testResults = read.xls(pathToFile, sheet=1)
+summary(testResults)
+```
+
+Before going into the plots, we initialise the formatting, that is the colors and shapes that will be used in subsequent plots to differentiate the samples.
+
+```{r Formatting}
+train_col=c(2,3,4) #,c(5,5,5)
+train_pch=rep(19,3)
+test_col=rep(1,5)
+test_pch=c(15,8,17,18,19) #,3
+```
+
+## Train Corpus 
+Let us now plot the relation of the words and sentences of the training corpus
+
+```{r TrainPlot, eval=TRUE, warning=FALSE}
+plot(words/10~sentences, data=trainResults/1e6, pch=train_pch, col=train_col,
+     ylab="Words (Millions)", xlab="Sentences (Millions)",
+     main="Words vs Sentences of the Train Corpus") 
+legend(x = c(0.3,1.2), y= c(7.8,6.2), inset=c(0.1,0), pch = train_pch, col=train_col,  c("News Commentary","Europarl","News Crawl 2007"), y.intersp=1.15,
+       cex = 0.7)
+grid(5, 5, col = "gray", lty = "dotted",
+     lwd = par("lwd"), equilogs = TRUE)
+```
+       
+## Test Corpus 
+Let us now plot the relation of the words and sentences of the test corpus
+
+```{r TestPlot, eval=TRUE, warning=FALSE}
+plot(words~sentences, data=testResults, pch=test_pch, col=test_col,
+     ylab="Words", xlab="Sentences",
+     main="Words vs Sentences of the Test Corpus") 
+legend(x = c(1350,1520), y= c(55000,39500), inset=c(0.1,0), pch = test_pch, col=test_col,  c("FR", "CS", "DE","FI","RU"), y.intersp=1.15,
+       cex = 0.9)
+grid(5, 5, col = "gray", lty = "dotted",
+     lwd = par("lwd"), equilogs = TRUE)
+```
+
+## Final Results
+
+And finally, this are the final results
+
+``` {r FinalResults}
+# Plot results for OOVs~ppl
+plot(OOVs~ppl, data=testResults, pch=rep(test_pch,3), col=rep(train_col,c(5,5,5)),
+            ylab="OOV words", xlab="Perplexity",
+            main="Perplexity of test corpus for different trainings") 
+
+# Add grid
+grid(5, 5, col = "gray", lty = "dotted",
+     lwd = par("lwd"), equilogs = TRUE)
+
+# Add legend of the training tests
+legend(x = c(470,655), y= c(3200,2300), inset=c(0.2,0), col=c(0,train_col), pch = 19,  c(expression(bold("Training Corpus")), "News Commentary","Europarl","News Crawl 2007"), y.intersp=1.15,
+      cex = 0.75)
+# Add legend of the shapes
+legend(x = c(1010,1155), y= c(3200,2000), inset=c(0.1,0), col= c(0,test_col), pch = test_pch,  c(expression(bold("Test Corpus")), "FR", "CS", "DE", "FI", "RU"), y.intersp=1.15,
+       cex = 0.75)
+```

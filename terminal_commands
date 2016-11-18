@@ -1,0 +1,31 @@
+## Generate LM
+ngram-count -text sample.train -lm sample.lm
+
+## Obtain results for training corpus "News Commentary v11"
+
+ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/enfr.test > results/newsv11/enfr.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/encs.test > results/newsv11/encs.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/ende.test > results/newsv11/ende.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/enfi.test > results/newsv11/enfi.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/enru.test > results/newsv11/enru.results
+
+ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/enfr.test -debug 2 > results2/newsv11/enfr.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/encs.test -debug 2 > results2/newsv11/encs.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/ende.test -debug 2 > results2/newsv11/ende.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/enfi.test -debug 2 > results2/newsv11/enfi.results && ngram -lm lm/news-commentary-v11.en.lm -ppl test/plain/enru.test -debug 2 > results2/newsv11/enru.results
+
+## Obtain results for training corpus "Europarl"
+
+ngram -lm lm/europarl-v7.en.lm -ppl test/plain/enfr.test > results/europarl/enfr.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/encs.test > results/europarl/encs.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/ende.test > results/europarl/ende.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/enfi.test > results/europarl/enfi.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/enru.test > results/europarl/enru.results
+
+ngram -lm lm/europarl-v7.en.lm -ppl test/plain/enfr.test -debug 2 > results2/europarl/enfr.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/encs.test -debug 2 > results2/europarl/encs.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/ende.test -debug 2 > results2/europarl/ende.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/enfi.test -debug 2 > results2/europarl/enfi.results && ngram -lm lm/europarl-v7.en.lm -ppl test/plain/enru.test -debug 2 > results2/europarl/enru.results
+
+## Obtain results for training corpus "News 2007"
+
+ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/enfr.test > results/news07/enfr.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/encs.test > results/news07/encs.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/ende.test > results/news07/ende.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/enfi.test > results/news07/enfi.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/enru.test > results/news07/enru.results
+
+ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/enfr.test -debug 2 > results2/news07/enfr.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/encs.test -debug 2 > results2/news07/encs.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/ende.test -debug 2 > results2/news07/ende.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/enfi.test -debug 2 > results2/news07/enfi.results && ngram -lm lm/news.2007.en.suffled.lm -ppl test/plain/enru.test -debug 2 > results2/news07/enru.results
+
+## Obtain results for training corpus "News 2011"
+
+ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/enfr.test > results/news10/enfr.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/encs.test > results/news10/encs.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/ende.test > results/news10/ende.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/enfi.test > results/news10/enfi.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/enru.test > results/news10/enru.results
+
+ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/enfr.test -debug 2 > results2/news10/enfr.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/encs.test -debug 2 > results2/news10/encs.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/ende.test -debug 2 > results2/news10/ende.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/enfi.test -debug 2 > results2/news10/enfi.results && ngram -lm lm/news.2010.en.shuffled.lm -ppl test/plain/enru.test -debug 2 > results2/news10/enru.results
+
+
+## Strip the .sgm files into txt plain files
+
+sudo perl ./strip_sgml.pl newsdiscusstest2015-enfr-src.en.sgm > plain/enfr.test && sudo perl ./strip_sgml.pl newstest2015-encs-src.en.sgm > plain/encs.test && sudo perl ./strip_sgml.pl newstest2015-ende-src.en.sgm > plain/ende.test && sudo perl ./strip_sgml.pl newstest2015-enfi-src.en.sgm > plain/enfi.test && sudo perl ./strip_sgml.pl newstest2015-enru-src.en.sgm > plain/enru.test
